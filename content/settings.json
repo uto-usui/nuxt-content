@@ -1,0 +1,10 @@
+{
+  "title": "nuxt content test",
+  "url": "https://example.com",
+  "logo": {
+    "light": "/logo-light.svg",
+    "dark": "/logo-dark.svg"
+  },
+  "github": "uto-usui/nuxt-content",
+  "twitter": "uto_ao"
+}
