@@ -7,22 +7,28 @@ const config = theme({
 
   loading: { color: '#00CD81' },
 
-  // i18n: {
-  //   locales: () => [
-  //     {
-  //       code: 'en',
-  //       iso: 'en-US',
-  //       file: 'en-US.js',
-  //       name: 'English',
-  //     },
-  //   ],
-  //   defaultLocale: 'en',
-  // },
+  i18n: {
+    locales: () => [
+      {
+        code: 'ja',
+        iso: 'ja_JP',
+        file: 'ja_JP.js',
+        name: '日本語',
+      },
+      {
+        code: 'en',
+        iso: 'en-US',
+        file: 'en-US.js',
+        name: 'English',
+      },
+    ],
+    defaultLocale: 'ja',
+  },
 
   buildModules: ['@nuxtjs/google-gtag'],
 
   'google-gtag': {
-    id: 'G-1RJ1F2HNG8',
+    id: 'xxx',
     config: {
       send_page_view: false, // might be necessary to avoid duplicated page track on page reload
     },
@@ -47,8 +53,6 @@ const config = theme({
       },
     ],
   },
-
-  modules: ['nuxt-user-agent'],
 })
 
 export default config
