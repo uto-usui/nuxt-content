@@ -1,4 +1,4 @@
-const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":["/?standalone=true","/?standalone=true"],"runtimeCaching":[{"urlPattern":"^https://fonts.(?:googleapis|gstatic).com/(.*)","handler":"CacheFirst","method":"GET","strategyOptions":{"cacheableResponse":{"statuses":[0,200]}},"strategyPlugins":[]},{"urlPattern":"https://cdn.jsdelivr.net/.*","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/","offlineStrategy":"NetworkFirst"}
+const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"cacheOptions":{"cacheId":"laboobal-dev-prod","directoryIndex":"/","revision":"OzL7g6iH82po"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":[{"revision":"OzL7g6iH82po","url":"/nuxt-content/?standalone=true&revision=OzL7g6iH82po"},{"revision":"OzL7g6iH82po","url":"/nuxt-content/?standalone=true&revision=OzL7g6iH82po"}],"runtimeCaching":[{"urlPattern":"^https://fonts.(?:googleapis|gstatic).com/(.*)","handler":"CacheFirst","method":"GET","strategyOptions":{"cacheableResponse":{"statuses":[0,200]}},"strategyPlugins":[]},{"urlPattern":"https://cdn.jsdelivr.net/.*","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/nuxt-content/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/nuxt-content/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/nuxt-content/","offlineStrategy":"NetworkFirst"}
 
 importScripts(...[options.workboxURL, ...options.importScripts])
 
@@ -49,6 +49,7 @@ function precacheAssets(workbox, options) {
     workbox.precaching.precacheAndRoute(options.preCaching, options.cacheOptions)
   }
 }
+
 
 function runtimeCaching(workbox, options) {
   for (const entry of options.runtimeCaching) {
