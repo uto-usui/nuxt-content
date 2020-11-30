@@ -97,7 +97,7 @@ export default config
 
 `tailwind.config.js` から [default theme config](https://github.com/nuxt/content/blob/dev/packages/theme-docs/src/tailwind.config.js) で設定されたデフォルトスタイルを上書きします。
 
-Primary Color は nuxt.config.js の `docs.primaryColor` からかんたんに設定できる。
+Primary Color は nuxt.config.js の `docs.primaryColor` からかんたんに設定できます。
 
 **Example**
 
@@ -155,7 +155,7 @@ package.json
 
 ## Content
 
-以上の設定が済めば、ドキュメンテーションを `content/` に書いていきます。
+以上の設定が済めば、ドキュメントを `content/` に書いていきます。
 
 > [writing markdown content](/writing#markdown) の仕様について
 
@@ -207,7 +207,7 @@ content/
 
 ### Front-matter
 
-マークダウンファイルのフロントマターセクションに必要な項目を書きます。
+マークダウンファイルの Front-matter セクションに必要な項目を書きます。
 
 #### 必須
 
@@ -270,36 +270,25 @@ badge: 'welcome'
   - 各ページの `Edit this page on GitHub link` で使用する プロジェクトのデフォルトのディレクトリを指定します (デフォルトは `docs`)。
 - `layout` (`String`)
   - `single` を指定するとサイドメニューが削れたレイアウトに変更できる
-- `algolia` (`Object`) <badge>v0.7.0+</badge>
-  - This option allows you to use [Algolia DocSearch](https://docsearch.algolia.com) to replace the simple built-in search. In order to enable it, you need to provide at least the `apiKey` and the `indexName`:
-    ```json
-    "algolia": {
-        "apiKey": "<API_KEY>",
-        "indexName": "<INDEX_NAME>",
-        "langAttribute": "language"
-    }
-    ```
-  - If you use `i18n`, make sure the `<langAttribute>` is the same as the html lang selector in the config (defaults to `language`).
-  - Take a look at the [@nuxt/content](https://github.com/algolia/docsearch-configs/blob/master/configs/nuxtjs_content.json) docsearch config for an example.
 
 ### Example
 
 ```json[content/settings.json]
 {
   "title": "Nuxt Content",
-  "url": "https://content.nuxtjs.org",
+  "url": "https://uto-usui.github.io/nuxt-content/",
   "logo": {
     "light": "/logo-light.svg",
     "dark": "/logo-dark.svg"
   },
-  "github": "nuxt/content",
-  "twitter": "@nuxt_js"
+  "github": "uto-usui/nuxt-content",
+  "twitter": "@uto_ao"
 }
 ```
 
 ## Images
 
-You can apply `dark-img` and `light-img` classes to your images when you have two versions to automatically swap dependending on the color mode.
+`dark-img` と `light-img` クラスを画像に与えると、カラーモードによって自動的に入れ替えることができます。
 
 **Example**
 
@@ -317,9 +306,9 @@ You can apply `dark-img` and `light-img` classes to your images when you have tw
 
 ## Components
 
-The theme comes with some default Vue.js components you can use directly in your markdown content.
+テーマには、マークダウンで使用できるいくつかの Vue components が定義されています。
 
-> You can create your own components in the `components/global/` folder, check out [this section](/writing#vue-components). <badge>v0.3.0+</badge>
+> マークダウンで利用したいコンポーネントは `components/global/` に置くと追加できます。[writing#vue-components](/writing#vue-components)を参照。
 
 ### `<alert>`
 
@@ -335,7 +324,7 @@ The theme comes with some default Vue.js components you can use directly in your
 ```md
 <alert>
 
-Check out an info alert with a `codeblock` and a [link](/themes/docs)!
+Check out an info alert with a `codeblock`
 
 </alert>
 ```
@@ -344,7 +333,7 @@ Check out an info alert with a `codeblock` and a [link](/themes/docs)!
 
 <alert>
 
-Check out an info alert with a `codeblock` and a [link](/themes/docs)!
+Check out an info alert with a `codeblock`
 
 </alert>
 
@@ -355,35 +344,25 @@ Check out an info alert with a `codeblock` and a [link](/themes/docs)!
 - `items`
   - Type: `Array`
   - Default: `[]`
-- `type` <badge>v0.7.0+</badge>
+- `type`
   - Type: `String`
   - Default: `'primary'`
   - Values: `['primary', 'info', 'success', 'warning', 'danger']`
-- `icon` <badge>v0.7.0+</badge>
+- `icon`
   - Type: `String`
-  - *Can be used to override the default `type` icon, check out the [icons available](https://github.com/nuxt/content/tree/dev/packages/theme-docs/src/components/global/icons)*
+  - *使用するアイコンは変更できます。 [icons available](https://github.com/nuxt/content/tree/dev/packages/theme-docs/src/components/global/icons) このコンポート名を指定します。*
 
 **Example**
 
 ```md
----
-items:
-- Item1
-- Item2
-- Item3
----
-
-<list :items="items"></list>
+<list :items="['Item1', 'Item2', 'Item3']" icon="IconArrowRight"></list>
 ```
 
 **Result**
 
-<list :items="['Item1', 'Item2', 'Item3']"></list>
-
+<list :items="['Item1', 'Item2', 'Item3']" icon="IconArrowRight"></list>
 
 ### `<badge>`
-
-<badge>v0.5.0+</badge>
 
 **Example**
 
@@ -397,7 +376,7 @@ items:
 
 ### `<code-group>`
 
-This component uses `slots`, refer to `code-block` below.
+`<code-block>` をタブグループにまとめます。
 
 ### `<code-block>`
 
@@ -463,11 +442,7 @@ This component uses `slots`, refer to `code-block` below.
 **Example**
 
 ```md
----
-link: https://codesandbox.io/embed/nuxt-content-l164h?hidenavigation=1&theme=dark
----
-
-<code-sandbox :src="link"></code-sandbox>
+<code-sandbox src="https://codesandbox.io/embed/nuxt-content-l164h?hidenavigation=1&theme=dark"></code-sandbox>
 ```
 
 **Result**
