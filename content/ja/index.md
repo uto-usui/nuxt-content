@@ -278,8 +278,8 @@ badge: 'welcome'
   "title": "Nuxt Content",
   "url": "https://uto-usui.github.io/nuxt-content/",
   "logo": {
-    "light": "/logo-light.svg",
-    "dark": "/logo-dark.svg"
+    "light": "logo-light.svg",
+    "dark": "logo-dark.svg"
   },
   "github": "uto-usui/nuxt-content",
   "twitter": "@uto_ao"
@@ -293,14 +293,14 @@ badge: 'welcome'
 **Example**
 
 ```md
-<img src="/logo-light.svg" class="light-img" alt="Logo light" />
-<img src="/logo-dark.svg" class="dark-img" alt="Logo dark" />
+<img src="logo-light.svg" class="light-img" alt="Logo light" />
+<img src="logo-dark.svg" class="dark-img" alt="Logo dark" />
 ```
 
 **Result**
 
-<img src="/logo-light.svg" class="light-img" alt="Logo light" />
-<img src="/logo-dark.svg" class="dark-img" alt="Logo dark" />
+<img src="logo-light.svg" class="light-img" alt="Logo light" />
+<img src="logo-dark.svg" class="dark-img" alt="Logo dark" />
 
 <p class="flex items-center">Try switching between light and dark mode:&nbsp;<app-color-switcher class="inline-flex ml-2"></app-color-switcher></p>
 
