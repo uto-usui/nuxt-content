@@ -35,6 +35,10 @@ const config = theme({
     debug: false, // use dev mode
   },
 
+  router: {
+    base: process.env.BASE_URL || '/',
+  },
+
   workbox: {
     // ios safari video support
     cachingExtensions: '~~/plugins/workbox-range-request.js',
