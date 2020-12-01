@@ -11,106 +11,13 @@ multiselectOptions:
 
 First of all, create a `content/` directory in your project:
 
-```bash
-content/
-  articles/
-    article-1.md
-    article-2.md
-  home.md
-```
-
-This module will parse `.md`, `.yaml`, `.yml`, `.csv`, `.json`, `.json5`, `.xml` files and generate the following properties:
-
-- `dir`
-- `path`
-- `slug`
-- `extension` (ex: `.md`)
-- `createdAt`
-- `updatedAt`
-
-The `createdAt` and `updatedAt` properties are based on the file's actual created & updated datetime, but you can override them by defining your own `createdAt` and `updatedAt` values. This is especially useful if you are migrating your past blog posts where the `createdAt` can be months or years ago.
-
 ## Markdown
-
-This module converts your `.md` files into a JSON AST tree structure, stored in a `body` variable.
-
-Make sure to use the `<nuxt-content>` component to display the `body` of your markdown content, see [displaying content](/displaying).
 
 > You can check the [basic syntax guide](https://www.markdownguide.org/basic-syntax) to help you master Markdown
 
-### Front Matter
-
-You can add a YAML front matter block to your markdown files. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines. Here is a basic example:
-
-```md
----
-title: Introduction
-description: Learn how to use @nuxt/content.
----
-```
-
-These variables will be injected into the document:
-
-```json
-{
-  body: Object
-  excerpt: Object
-  title: "Introduction"
-  description: "Learn how to use @nuxt/content."
-  dir: "/"
-  extension: ".md"
-  path: "/index"
-  slug: "index"
-  toc: Array
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-```
-
-### Excerpt
-
-Content excerpt or summary can be extracted from the content using `<!--more-->` as a divider.
-
-```md
----
-title: Introduction
----
-
-Learn how to use @nuxt/content.
-<!--more-->
-Full amount of content beyond the more divider.
-```
-
-Description property will contain the excerpt content unless defined within the Front Matter props.
-
-<alert type="info">
-
-Be careful to enter <code>&lt;!--more--&gt;</code> exactly; i.e., all lowercase and with no whitespace.
-
-</alert>
-
-Example variables will be injected into the document:
-
-```json
-{
-  body: Object
-  title: "Introduction"
-  description: "Learn how to use @nuxt/content."
-  dir: "/"
-  extension: ".md"
-  path: "/index"
-  slug: "index"
-  toc: Array
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-```
-
 ### Headings
 
-This module automatically adds an `id` and a `link` to each heading.
-
-Say we have the following markdown file:
+このモジュールは自動的にidとlinkを各見出しに追加します。
 
 ```md[home.md]
 # Lorem ipsum
@@ -120,49 +27,15 @@ Say we have the following markdown file:
 ##### elit
 ```
 
-It will be transformed to its JSON AST structure, and by using the `nuxt-content` component, it will render HTML like:
-
-```html
-<h1 id="lorem-ipsum-"><a href="#lorem-ipsum-" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>Lorem ipsum</h1>
-<h2 id="dolorsitamet"><a href="#dolorsitamet" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>dolor—sit—amet</h2>
-<h3 id="consectetur--adipisicing"><a href="#consectetur--adipisicing" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>consectetur &#x26; adipisicing</h3>
-<h4 id="elit"><a href="#elit" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>elit</h4>
-<h5 id="elit-1"><a href="#elit-1" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>elit</h5>
-```
-
-> The links in headings are empty and therefore hidden, so it's up to you to style them. For an example, try hovering one of the headers in these docs.
-
 ### Links
 
-Links are transformed to add valid `target` and `rel` attributes using [remark-external-links](https://github.com/remarkjs/remark-external-links). You can check [here](/configuration#markdown) to learn how to configure this plugin.
+リンクは、[remark-external-links](https://github.com/remarkjs/remark-external-links) を使って、有効な target 属性と rel 属性を追加するように変換されます。設定は、[ここ](/configuration#markdown) を参照してください。
 
-Relative links are also automatically transformed to [nuxt-link](https://nuxtjs.org/api/components-nuxt-link/) to provide navigation between page components with enhanced performance through smart prefetching.
-
-Here is an example using external, relative, markdown and html links:
-
-```md
----
-title: Home
----
-
-## Links
-
-<nuxt-link to="/articles">Nuxt Link to Blog</nuxt-link>
-
-<a href="/articles">Html Link to Blog</a>
-
-[Markdown Link to Blog](/articles)
-
-<a href="https://nuxtjs.org">External link html</a>
-
-[External Link markdown](https://nuxtjs.org)
-```
+また、相対リンクは自動的に nuxt-link に変換されます。
 
 ### Footnotes
 
-This module supports extended markdown syntax for footnotes using [remark-footnotes](https://github.com/remarkjs/remark-footnotes). You can check [here](/configuration#markdown) to learn how to configure this plugin.
-
-Here is an example using footnotes:
+このモジュールは、[remark-footnotes](https://github.com/remarkjs/remark-footnotes) を使った脚注のための拡張 Markdown 構文をサポートしています。このプラグインの設定方法については、[ここ](/configuration#markdown) をチェックしてください。
 
 ```md
 Here's a simple footnote,[^1] and here's a longer one.[^bignote]
@@ -178,18 +51,17 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
     Add as many paragraphs as you like.
 ```
 
-> You can check the [extended syntax guide](https://www.markdownguide.org/extended-syntax/#footnotes) for more information about footnotes.
+> さらに詳しく知りたいなら、 [extended syntax guide](https://www.markdownguide.org/extended-syntax/#footnotes) を参照
 
 ### Codeblocks
 
-This module automatically wraps codeblocks and applies [PrismJS](https://prismjs.com) classes (see [syntax highlighting](/writing#syntax-highlighting)).
+このモジュールはコードブロックを自動的にラップし、[PrismJS](https://prismjs.com) を適用します。
 
-Codeblocks in Markdown are wrapped inside 3 backticks. Optionally, you can define the language of the codeblock to enable specific syntax highlighting.
+コードブロックを```でラップします。オプションで、特定のシンタックスハイライトを有効にし、言語を指定できます。
 
-Orginally markdown does not support filenames or highlighting specific lines inside codeblocks. However, this module allows it with its own custom syntax:
+中括弧内のハイライトしたい行番号を書き、角括弧内にファイル名を書きます。
 
-- Highlighted line numbers inside curly braces
-- Filename inside square brackets
+**Example**
 
 <pre class="language-js">
 ```js{1,3-5}[server.js]
@@ -204,22 +76,20 @@ http.createServer((req, res) => {
 ```
 </pre>
 
-After rendering with the `nuxt-content` component, it will look like this:
+**Result**
 
-```html[server.js]
-<div class="nuxt-content-highlight">
-  <span class="filename">server.js</span>
-  <pre class="language-js" data-line="1,3-5">
-    <code>
-      ...
-    </code>
-  </pre>
-</div>
+```js{1,3-5}[server.js]
+const http = require('http')
+const bodyParser = require('body-parser')
+
+http.createServer((req, res) => {
+  bodyParser.parse(req, (error, body) => {
+    res.end(body)
+  })
+}).listen(3000)
 ```
 
-> Line numbers are added to the `pre` tag in `data-line` attribute.
-
-> The filename will be converted to a span with a `filename` class, it's up to you to style it. Take a look at this documentation, on the top right of code blocks.
+> 行番号はpreタグのdata-line属性に追加されます。
 
 ### Syntax highlighting
 
@@ -227,21 +97,11 @@ It supports by default code highlighting using [PrismJS](https://prismjs.com) an
 
 ### HTML
 
-You can write HTML in your Markdown:
+Markdown に HTML を書くことができます
 
-```md[home.md]
----
-title: Home
----
+コンポーネントの中にMarkdownを配置する場合、その前に空の行を続けて配置しなければならないことに注意してください。そうでない場合は、ブロック全体がカスタムHTMLとして扱われます。
 
-## HTML
-
-<p><span class="note">A mix of <em>Markdown</em> and <em>HTML</em>.</span></p>
-```
-
-Beware that when placing Markdown inside a component, it must be preceded and followed by an empty line, otherwise the whole block is treated as custom HTML.
-
-**This won't work:**
+**Bad**
 
 ```html
 <div class="note">
@@ -249,7 +109,7 @@ Beware that when placing Markdown inside a component, it must be preceded and fo
 </div>
 ```
 
-**But this will:**
+**Good**
 
 ```html
 <div class="note">
@@ -257,47 +117,29 @@ Beware that when placing Markdown inside a component, it must be preceded and fo
   *Markdown* and <em>HTML</em>.
 
 </div>
-```
-
-**As will this**:
-
-```html
-<span class="note">*Markdown* and <em>HTML</em>.</span>
 ```
 
 ### Vue components
 
-You can use global Vue components or locally registered in the page you're displaying your markdown.
+グローバル Vue コンポーネントを使用することも、Markdown を表示しているページに登録されたコンポーネントを使用することもできます。
 
-<alert type="warning">
-
-An issue exists with locally registered components and live edit in development, since **v1.5.0** you can disable it by setting `liveEdit: false` (see [configuration](/configuration#liveedit)).
-
-</alert>
-
-Since `@nuxt/content` operates under the assumption all Markdown is provided by the author (and not via third-party user submission), sources are processed in full (tags included), with a couple of caveats from [rehype-raw](https://github.com/rehypejs/rehype-raw):
-
-1. You need to refer to your components by kebab case naming:
+1. コンポーネントはケバブケースで参照する
 
 ```html
 Use <my-component> instead of <MyComponent>
 ```
 
-2. You cannot use self-closing tags, i.e., **this won't work**:
+2. セルフクローズタグは使えません。次の記述は **動作しない**
 
 ```html
 <my-component/>
 ```
 
-But **this will**:
+次の記述は **動作します**
 
 ```html
 <my-component></my-component>
 ```
-
-**Example**
-
-Say we have a Vue component called [ExampleMultiselect.vue](https://github.com/nuxt/content/blob/master/docs/components/global/examples/ExampleMultiselect.vue):
 
 ```md[home.md]
 Please choose a *framework*:
@@ -305,16 +147,7 @@ Please choose a *framework*:
 <example-multiselect :options="['Vue', 'React', 'Angular', 'Svelte']"></example-multiselect>
 ```
 
-**Result**
-
-<div class="border rounded-md p-2 mb-2 bg-gray-200 dark:bg-gray-800">
-Please choose a <i>framework</i>:
-
-<example-multiselect :options="['Vue', 'React', 'Angular', 'Svelte']"></example-multiselect>
-
-</div>
-
-You can also define the options for components in your front matter:
+また、front-matter section でコンポーネントのオプションを定義することもできます。
 
 ```md[home.md]
 ---
@@ -327,17 +160,9 @@ multiselectOptions:
 <example-multiselect :options="multiselectOptions"></example-multiselect>
 ```
 
-<example-multiselect :options="multiselectOptions"></example-multiselect><br>
-
-<alert type="info">
-
-These components will be rendered using the `<nuxt-content>` component, see [displaying content](/displaying#component).
-
-</alert>
-
 #### Templates
 
-You can use `template` tags for content distribution inside your Vue.js components:
+Vue コンポーネント内のコンテンツ配信には `template` タグを使用することができます。
 
 ```html
 <my-component>
@@ -347,10 +172,9 @@ You can use `template` tags for content distribution inside your Vue.js componen
 </my-component>
 ```
 
-However, you cannot render
-[dynamic content](https://vuejs.org/v2/guide/syntax.html) nor use
-[slot props](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots). I.e.,
-**this wont work**:
+ただし、[Scoped-Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) は利用できません。
+
+**not work**
 
 ```html
 <my-component>
@@ -358,306 +182,4 @@ However, you cannot render
     <p>{{ slotProps.someProperty }}</p>
   </template>
 </my-component>
-```
-
-#### Global components
-
-Since **v1.4.0** and Nuxt **v2.13.0**, you can now put your components in `components/global/` directory so you don't have to import them in your pages.
-
-```bash
-components/
-  global/
-    Hello.vue
-content/
-  home.md
-```
-
-Then in `content/home.md`, you can use `<hello></hello>` component without having to worry about importing it in your page.
-
-### Table of contents
-
-When fetching a document, we have access to a toc property which is an array of all the titles. Each title has an `id` so that it is possible to link to, a depth which is the type of heading it is. Only h2 and h3 titles are used for the toc. There is also a text property which is the text of the title.
-
-```json
-{
-  "toc": [{
-    "id": "welcome",
-    "depth": 2,
-    "text": "Welcome!"
-  }]
-}
-```
-
-> Take a look at the right side of this page for an example.
-
-<alert type="info">
-
-Check out [this snippet](/snippets#table-of-contents) on how to implement a table of contents into your app
-
-</alert>
-
-### Example
-
-A file `content/home.md`:
-
-```md
----
-title: Home
----
-
-## Welcome!
-```
-
-Will be transformed into:
-
-```json
-{
-  "dir": "/",
-  "slug": "home",
-  "path": "/home",
-  "extension": ".md",
-  "title": "Home",
-  "toc": [
-    {
-      "id": "welcome",
-      "depth": 2,
-      "text": "Welcome!"
-    }
-  ],
-  "body": {
-    "type": "root",
-    "children": [
-      {
-        "type": "element",
-        "tag": "h2",
-        "props": {
-          "id": "welcome"
-        },
-        "children": [
-          {
-            "type": "element",
-            "tag": "a",
-            "props": {
-              "ariaHidden": "true",
-              "href": "#welcome",
-              "tabIndex": -1
-            },
-            "children": [
-              {
-                "type": "element",
-                "tag": "span",
-                "props": {
-                  "className": [
-                    "icon",
-                    "icon-link"
-                  ]
-                },
-                "children": []
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "value": "Welcome!"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-We internally add a `text` key with the markdown body that will be used for [searching](/fetching#searchfield-value) or [extending](/advanced#contentfilebeforeinsert) it.
-
-## JSON / JSON5
-
-Data defined will be injected into the document.
-
-> No body will be generated.
-
-### Arrays
-
-<badge>v0.10.0+</badge>
-
-You can now use arrays inside your `.json` files. Objects will be flattened and inserted into the collection. You can [fetch](/fetching) your content in the same way as your used to.
-
-<alert type="warning">
-
-Since the `slug` is by default taken from the path and missing in this case, you have to define it in your objects for this feature to work properly.
-
-</alert>
-
-> Check out our [example](https://github.com/nuxt/content/tree/dev/example) with articles and authors.
-
-### Example
-
-A file `content/home.json`:
-
-```json
-{
-  "title": "Home",
-  "description": "Welcome!"
-}
-```
-
-Will be transformed into:
-
-```json
-{
-  "dir": "/",
-  "slug": "home",
-  "path": "/home",
-  "extension": ".json",
-  "title": "Home",
-  "description": "Welcome!"
-}
-```
-
-A file `content/authors.json`:
-
-```json
-[
-  {
-    "name": "Sébastien Chopin",
-    "slug": "atinux"
-  },
-  {
-    "name": "Krutie Patel",
-    "slug": "krutiepatel"
-  },
-  {
-    "name": "Sergey Bedritsky",
-    "slug": "sergeybedritsky"
-  }
-]
-```
-
-Will be transformed into:
-
-```json
-[
-  {
-    "name": "Sébastien Chopin",
-    "slug": "atinux",
-    "dir": "/authors",
-    "path": "/authors/atinux",
-    "extension": ".json"
-  },
-  {
-    "name": "Krutie Patel",
-    "slug": "krutiepatel",
-    "dir": "/authors",
-    "path": "/authors/krutiepatel",
-    "extension": ".json"
-  },
-  {
-    "name": "Sergey Bedritsky",
-    "slug": "sergeybedritsky",
-    "dir": "/authors",
-    "path": "/authors/sergeybedritsky",
-    "extension": ".json"
-  }
-]
-```
-
-## CSV
-
-Rows will be assigned to body variable.
-
-### Example
-
-A file `content/home.csv`:
-
-```csv
-title, description
-Home, Welcome!
-```
-
-Will be transformed into:
-
-```json
-{
-  "dir": "/",
-  "slug": "home",
-  "path": "/home",
-  "extension": ".csv",
-  "body": [
-    {
-      "title": "Home",
-      "description": "Welcome!"
-    }
-  ]
-}
-```
-
-## XML
-
-XML will be parsed
-
-### Example
-
-A file `content/home.xml`:
-
-```xml
-<xml>
-  <item prop="abc">
-    <title>Title</title>
-    <description>Hello World</description>
-  </item>
-</xml>
-```
-
-Will be transformed into:
-
-```json
-{
-  "dir": "/",
-  "slug": "home",
-  "path": "/home",
-  "extension": ".xml",
-  "body": {
-    "xml": {
-      "item": [
-        {
-          "$": {
-            "prop": "abc"
-          },
-          "title": [
-            "Title"
-          ],
-          "description": [
-            "Hello World"
-          ]
-      }
-    ]
-  }
-}
-```
-
-## YAML / YML
-
-Data defined will be injected into the document.
-
-> No body will be generated.
-
-### Example
-
-A file `content/home.yaml`:
-
-```yaml
-title: Home
-description: Welcome!
-```
-
-Will be transformed into:
-
-```json
-{
-  "dir": "/",
-  "slug": "home",
-  "path": "/home",
-  "extension": ".yaml",
-  "title": "Home",
-  "description": "Welcome!"
-}
 ```
