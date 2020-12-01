@@ -4,7 +4,7 @@ subtitle: 'nuxt/content のドキュメントテーマのさわりかた 🐈'
 menuTitle: Home
 description: 'Create your documentation with @nuxt/content docs theme in seconds!'
 position: 1
-category: Getting started
+category: 📚📚📚
 version: 1.2
 badge: 'welcome'
 ---
@@ -27,7 +27,6 @@ badge: 'welcome'
 
   </code-block>
 </code-group>
-
 
 ## Settings
 
@@ -157,8 +156,6 @@ package.json
 
 以上の設定が済めば、ドキュメントを `content/` に書いていきます。
 
-> [writing markdown content](/writing#markdown) の仕様について
-
 ### Locales
 
 `nuxt-i18n` の設定で日/英を有効にするには `nuxt.config.js` を次のように設定します。
@@ -190,7 +187,7 @@ export default theme({
 
 **Example**
 
-```
+```bath
 content/
   ja/
     examples/
@@ -200,7 +197,7 @@ content/
 
 **Result**
 
-```
+```bath
 /examples/basic-usage
 /setup
 ```
@@ -235,17 +232,18 @@ content/
 
 ### Example
 
-```bash[content/ja/index.md]
+```bash[content/en/index.md]
 ---
-title: nuxt/content Docs Theme
-subtitle: 'nuxt/content のドキュメントテーマのさわりかた 🐈'
-menuTitle: Docs
-description: 'Create your documentation with @nuxt/content docs theme in seconds!'
-category: 📚📚📚
+title: 'Introduction'
+description: 'Empower your NuxtJS application with this awesome module.'
 position: 1
-version: 1.2
-badge: 'welcome'
+category: 'Getting started'
+version: 1.4
+fullscreen: false
+menuTitle: 'Intro'
 ---
+
+Introducing my awesome Nuxt module!
 ```
 
 ## Settings
@@ -308,7 +306,7 @@ badge: 'welcome'
 
 テーマには、マークダウンで使用できるいくつかの Vue components が定義されています。
 
-> マークダウンで利用したいコンポーネントは `components/global/` に置くと追加できます。[writing#vue-components](/writing#vue-components)を参照。
+> マークダウンで利用したいコンポーネントは `components/global/` に置くと追加できます。
 
 ### `<alert>`
 
@@ -448,3 +446,4 @@ Check out an info alert with a `codeblock`
 **Result**
 
 <code-sandbox src="https://codesandbox.io/embed/nuxt-content-l164h?hidenavigation=1&theme=dark"></code-sandbox>
+

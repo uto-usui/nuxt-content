@@ -4,7 +4,7 @@ subtitle: 'ドキュメンテーションの書き方 🐈'
 menuTitle: Writing
 description: 'Learn how to write your content/, supporting Markdown, YAML, CSV and JSON.'
 position: 3
-category: Getting started
+category: 📚📚📚
 multiselectOptions:
 - VuePress
 - Gridsome
