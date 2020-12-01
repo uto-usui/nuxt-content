@@ -1,5 +1,7 @@
 ---
 title: Writing content
+subtitle: 'ドキュメンテーションの書き方 🐈'
+menuTitle: Writing
 description: 'Learn how to write your content/, supporting Markdown, YAML, CSV and JSON.'
 position: 3
 category: Getting started
@@ -13,11 +15,11 @@ First of all, create a `content/` directory in your project:
 
 ## Markdown
 
-> You can check the [basic syntax guide](https://www.markdownguide.org/basic-syntax) to help you master Markdown
+[basic syntax guide](https://www.markdownguide.org/basic-syntax) をチェックして Markdown の書き方を学びます。 
 
 ### Headings
 
-このモジュールは自動的にidとlinkを各見出しに追加します。
+自動的にidとlinkを各見出しに追加します。
 
 ```md[home.md]
 # Lorem ipsum
@@ -29,13 +31,13 @@ First of all, create a `content/` directory in your project:
 
 ### Links
 
-リンクは、[remark-external-links](https://github.com/remarkjs/remark-external-links) を使って、有効な target 属性と rel 属性を追加するように変換されます。設定は、[ここ](/configuration#markdown) を参照してください。
+リンクは、[remark-external-links](https://github.com/remarkjs/remark-external-links) を使って、有効な target 属性と rel 属性を追加するように変換されます。
 
 また、相対リンクは自動的に nuxt-link に変換されます。
 
 ### Footnotes
 
-このモジュールは、[remark-footnotes](https://github.com/remarkjs/remark-footnotes) を使った脚注のための拡張 Markdown 構文をサポートしています。このプラグインの設定方法については、[ここ](/configuration#markdown) をチェックしてください。
+このモジュールは、[remark-footnotes](https://github.com/remarkjs/remark-footnotes) を使った脚注のための拡張 Markdown 構文をサポートしています。
 
 ```md
 Here's a simple footnote,[^1] and here's a longer one.[^bignote]
@@ -93,7 +95,9 @@ http.createServer((req, res) => {
 
 ### Syntax highlighting
 
-It supports by default code highlighting using [PrismJS](https://prismjs.com) and injects the theme defined in options into your Nuxt.js app, see [configuration](/configuration#markdownprismtheme).
+[PrismJS](https://prismjs.com) をコードハイライトをサポートし、オプションで定義されたテーマを適用します。
+
+
 
 ### HTML
 
