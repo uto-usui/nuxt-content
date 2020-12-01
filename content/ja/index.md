@@ -1,10 +1,10 @@
 ---
 title: nuxt/content Docs Theme
 subtitle: 'nuxt/content のドキュメントテーマのさわりかた 🐈'
-menuTitle: Docs
+menuTitle: Home
 description: 'Create your documentation with @nuxt/content docs theme in seconds!'
-category: 📚📚📚
 position: 1
+category: Getting started
 version: 1.2
 badge: 'welcome'
 ---
