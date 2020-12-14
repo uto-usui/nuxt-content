@@ -16,7 +16,7 @@
     "lintjs": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "lintcss": "stylelint --fix ./**/*.{vue,css,scss,sass} /**/**/*.{vue,css,scss,sass}",
     "precommit": "npm run lint",
-    "test": "jest",
+    "test": "jest"
   },
   "dependencies": {
     "@nuxt/content-theme-docs": "^0.8.2",
